@@ -3,7 +3,7 @@
 ## `docker-compose`
 
 ```bash
-docker network create rabbitmq-cluster
+docker network create -d overlay rabbitmq-cluster
 ```
 
 ```bash

@@ -4,8 +4,8 @@ services:
     image: rabbitmq:3-management
     hostname: rabbit1
     environment:
-      RABBITMQ_ERLANG_COOKIE: ${SECRET_KEY}
-      RABBITMQ_NODENAME: ${NODE_NAME}1
+      RABBITMQ_ERLANG_COOKIE: keysecrets
+      RABBITMQ_NODENAME: rabbit1
     volumes:
       - "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config"
       - "./definitions.json:/etc/rabbitmq/definitions.json"
@@ -21,10 +21,10 @@ services:
     image: rabbitmq:3-management
     hostname: rabbit2
     depends_on:
-      - ${NODE_NAME}1
+      - rabbit1
     environment:
-      RABBITMQ_ERLANG_COOKIE: ${SECRET_KEY}
-      RABBITMQ_NODENAME: ${NODE_NAME}2
+      RABBITMQ_ERLANG_COOKIE: keysecrets
+      RABBITMQ_NODENAME: rabbit2
     volumes:
       - "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config"
       - "./definitions.json:/etc/rabbitmq/definitions.json"
@@ -35,8 +35,8 @@ services:
     depends_on:
       - rabbit1
     environment:
-      RABBITMQ_ERLANG_COOKIE: ${SECRET_KEY}
-      RABBITMQ_NODENAME: ${NODE_NAME}3
+      RABBITMQ_ERLANG_COOKIE: keysecrets
+      RABBITMQ_NODENAME: rabbit3
     volumes:
       - "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config"
       - "./definitions.json:/etc/rabbitmq/definitions.json"
